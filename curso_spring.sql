@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 30-Ago-2020 às 20:47
+-- Tempo de geração: 31-Ago-2020 às 00:02
 -- Versão do servidor: 10.4.14-MariaDB
 -- versão do PHP: 7.2.33
 
@@ -26,8 +26,8 @@ SET time_zone = "+00:00";
 --
 -- Estrutura da tabela `categoria`
 --
-
-CREATE TABLE `categoria` (
+DROP TABLE IF EXISTS `categoria`;
+CREATE  TABLE `categoria` (
   `id` int(11) NOT NULL,
   `nome` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -50,8 +50,8 @@ INSERT INTO `categoria` (`id`, `nome`) VALUES
 --
 -- Estrutura da tabela `cidade`
 --
-
-CREATE TABLE `cidade` (
+DROP TABLE IF EXISTS `cidade`;
+CREATE  TABLE `cidade` (
   `id` int(11) NOT NULL,
   `nome` varchar(255) DEFAULT NULL,
   `estado_id` int(11) DEFAULT NULL
@@ -71,11 +71,11 @@ INSERT INTO `cidade` (`id`, `nome`, `estado_id`) VALUES
 --
 -- Estrutura da tabela `cliente`
 --
-
-CREATE TABLE `cliente` (
+DROP TABLE IF EXISTS `cliente`;
+CREATE  TABLE `cliente` (
   `id` int(11) NOT NULL,
   `cpf_ou_cnpj` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
+  `email` varchar(150) DEFAULT NULL,
   `nome` varchar(255) DEFAULT NULL,
   `senha` varchar(255) DEFAULT NULL,
   `tipo` int(11) DEFAULT NULL
@@ -94,8 +94,8 @@ INSERT INTO `cliente` (`id`, `cpf_ou_cnpj`, `email`, `nome`, `senha`, `tipo`) VA
 --
 -- Estrutura da tabela `endereco`
 --
-
-CREATE TABLE `endereco` (
+DROP TABLE IF EXISTS `endereco`;
+CREATE  TABLE `endereco` (
   `id` int(11) NOT NULL,
   `bairro` varchar(255) DEFAULT NULL,
   `cep` varchar(255) DEFAULT NULL,
@@ -120,8 +120,8 @@ INSERT INTO `endereco` (`id`, `bairro`, `cep`, `complemento`, `logradouro`, `num
 --
 -- Estrutura da tabela `estado`
 --
-
-CREATE TABLE `estado` (
+DROP TABLE IF EXISTS `estado`;
+CREATE  TABLE `estado` (
   `id` int(11) NOT NULL,
   `nome` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -139,8 +139,8 @@ INSERT INTO `estado` (`id`, `nome`) VALUES
 --
 -- Estrutura da tabela `item_pedido`
 --
-
-CREATE TABLE `item_pedido` (
+DROP TABLE IF EXISTS `item_pedido`;
+CREATE  TABLE `item_pedido` (
   `desconto` double DEFAULT NULL,
   `preco` double DEFAULT NULL,
   `quantidade` int(11) DEFAULT NULL,
@@ -162,8 +162,8 @@ INSERT INTO `item_pedido` (`desconto`, `preco`, `quantidade`, `pedido_id`, `prod
 --
 -- Estrutura da tabela `pagamento`
 --
-
-CREATE TABLE `pagamento` (
+DROP TABLE IF EXISTS `pagamento`;
+CREATE  TABLE `pagamento` (
   `pedido_id` int(11) NOT NULL,
   `estado` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -181,8 +181,8 @@ INSERT INTO `pagamento` (`pedido_id`, `estado`) VALUES
 --
 -- Estrutura da tabela `pagamento_com_boleto`
 --
-
-CREATE TABLE `pagamento_com_boleto` (
+DROP TABLE IF EXISTS `pagamento_com_boleto`;
+CREATE  TABLE `pagamento_com_boleto` (
   `data_pagamento` datetime DEFAULT NULL,
   `data_vencimento` datetime DEFAULT NULL,
   `pedido_id` int(11) NOT NULL
@@ -200,8 +200,8 @@ INSERT INTO `pagamento_com_boleto` (`data_pagamento`, `data_vencimento`, `pedido
 --
 -- Estrutura da tabela `pagamento_com_cartao`
 --
-
-CREATE TABLE `pagamento_com_cartao` (
+DROP TABLE IF EXISTS `pagamento_com_cartao`;
+CREATE  TABLE `pagamento_com_cartao` (
   `numero_de_parcelas` int(11) DEFAULT NULL,
   `pedido_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -218,8 +218,8 @@ INSERT INTO `pagamento_com_cartao` (`numero_de_parcelas`, `pedido_id`) VALUES
 --
 -- Estrutura da tabela `pedido`
 --
-
-CREATE TABLE `pedido` (
+DROP TABLE IF EXISTS `pedido`;
+CREATE  TABLE `pedido` (
   `id` int(11) NOT NULL,
   `instante` datetime DEFAULT NULL,
   `cliente_id` int(11) DEFAULT NULL,
@@ -239,8 +239,8 @@ INSERT INTO `pedido` (`id`, `instante`, `cliente_id`, `endereco_de_entrega_id`) 
 --
 -- Estrutura da tabela `perfis`
 --
-
-CREATE TABLE `perfis` (
+DROP TABLE IF EXISTS `perfis`;
+CREATE  TABLE `perfis` (
   `cliente_id` int(11) NOT NULL,
   `perfis` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -259,8 +259,8 @@ INSERT INTO `perfis` (`cliente_id`, `perfis`) VALUES
 --
 -- Estrutura da tabela `produto`
 --
-
-CREATE TABLE `produto` (
+DROP TABLE IF EXISTS `produto`;
+CREATE  TABLE `produto` (
   `id` int(11) NOT NULL,
   `nome` varchar(255) DEFAULT NULL,
   `preco` double DEFAULT NULL
@@ -327,8 +327,8 @@ INSERT INTO `produto` (`id`, `nome`, `preco`) VALUES
 --
 -- Estrutura da tabela `produto_categoria`
 --
-
-CREATE TABLE `produto_categoria` (
+DROP TABLE IF EXISTS `produto_categoria`;
+CREATE  TABLE `produto_categoria` (
   `produto_id` int(11) NOT NULL,
   `categoria_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -398,8 +398,8 @@ INSERT INTO `produto_categoria` (`produto_id`, `categoria_id`) VALUES
 --
 -- Estrutura da tabela `telefone`
 --
-
-CREATE TABLE `telefone` (
+DROP TABLE IF EXISTS `telefone`;
+CREATE  TABLE `telefone` (
   `cliente_id` int(11) NOT NULL,
   `telefones` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
